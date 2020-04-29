@@ -11,8 +11,6 @@ if ($db->connect_error) {
   die("Error: Could not connect to database. " . $db->connect_error);
 }
 
-#$category_id = $_GET['id'];
-
 $sql = "SELECT * FROM manufacturers ORDER BY name;";
 $manufacturers = $db->query($sql);
 ?>
