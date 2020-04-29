@@ -10,6 +10,9 @@ $db = new mysqli(
 if ($db->connect_error) {
   die("Error: Could not connect to database. " . $db->connect_error);
 }
+
+#$category_id = $_GET['id'];
+
 $sql = "SELECT * FROM categories ORDER BY name;";
 $categories = $db->query($sql);
 ?>

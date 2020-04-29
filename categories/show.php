@@ -52,7 +52,7 @@ $num_rows = mysqli_num_rows($motorcycles);
           <tr>
             <td><a href="/motorcycles/show.php?motorcycle_id=<?= $id ?>"><img src="/assets/images/motorcycle_<?= $id ?>_thumb.jpg" alt="<?= $model ?>" class="thumbnail"></a></td>
             <td><?= $year ?></td>
-            <td><a href="/manufacturers/<?= $manufacturer_id ?>.php"><?= $manufacturer_name ?></a></td>
+            <td><a href="/manufacturers/show.php?id=<?= $manufacturer_id ?>"><?= $manufacturer_name ?></a></td>
             <td><a href="/motorcycles/show.php?motorcycle_id=<?= $id ?>"><?= $model ?></a></td>
             <td><a href="/categories/show.php?id=<?= $category_id ?>"><?= $category_name ?></a></td>
             <td><?= $cc ?>cc, <?= $hp ?>hp</td>
