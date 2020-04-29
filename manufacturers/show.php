@@ -18,7 +18,11 @@ $manufacturer = $db->query($sql_manufacturer)->fetch_assoc();
 $manufacturer_id = $manufacturer['id'];
 $manufacturer_name = $manufacturer['name'];
 
-$sql_motorcycles = "SELECT motorcycles.id AS id, model, year, engine_cc, engine_hp, manufacturer_id, manufacturers.id AS manufacturer_id, manufacturers.name AS manufacturer_name FROM motorcycles, manufacturers WHERE manufacturer_id = " . $manufacturer_id . " AND manufacturer_id = manufacturers.id;";
+$sql_motorcycles = "SELECT motorcycles.id AS id, model, year, engine_cc, engine_hp, categories.id AS category_id
+    FROM motorcycles, categories
+    WHERE category_id = categories.id
+    AND manufacturer_id = " . $manufacturer_id . "";
+    
 $motorcycles = $db->query($sql_motorcycles);
 $num_rows = mysqli_num_rows($motorcycles);
 ?>
@@ -46,15 +50,13 @@ $num_rows = mysqli_num_rows($motorcycles);
           $year = $motorcycle['year'];
           $cc = $motorcycle['engine_cc'];
           $hp = $motorcycle['engine_hp'];
-          $manufacturer_id = $motorcycle['manufacturer_id'];
-          $manufacturer_name = $motorcycle['manufacturer_name'];
         ?>
           <tr>
             <td><a href="/motorcycles/show.php?motorcycle_id=<?= $id ?>"><img src="/assets/images/motorcycle_<?= $id ?>_thumb.jpg" alt="<?= $model ?>" class="thumbnail"></a></td>
             <td><?= $year ?></td>
-            <td><a href="/manufacturers/<?= $manufacturer_id ?>.php"><?= $manufacturer_name ?></a></td>
-            <td><a href="/motorcycles/show.php?motorcycle_id=<?= $id ?>"><?= $model ?></a></td>
             <td><a href="/manufacturers/show.php?id=<?= $manufacturer_id ?>"><?= $manufacturer_name ?></a></td>
+            <td><a href="/motorcycles/show.php?motorcycle_id=<?= $id ?>"><?= $model ?></a></td>
+            <td><a href="/../categories/show.php?id=<?= $id ?>"><?= $model ?></a></td>
             <td><?= $cc ?>cc, <?= $hp ?>hp</td>
           </tr>
         <?php } // end while ?>
